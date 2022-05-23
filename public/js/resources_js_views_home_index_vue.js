@@ -186,6 +186,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ListPost",
   props: ["posts", "message", "userID"],
@@ -218,7 +219,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$router.push('/admin');
 
-                _context.next = 18;
+                _context.next = 19;
                 break;
 
               case 6:
@@ -229,7 +230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 };
                 formData = new FormData();
-                formData.append("body", _this.addComment);
+                formData.append("body", e.target.body.value);
                 formData.append("user_id", _this.userID);
                 formData.append("post_id", postId);
                 _context.next = 14;
@@ -238,6 +239,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 14:
                 response = _context.sent;
                 console.log(response.data);
+                $(".addInput").val("");
 
                 _this.posts.forEach(function (element) {
                   if (element.id == postId) {
@@ -247,7 +249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.addComment = "";
 
-              case 18:
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -265,19 +267,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 e.preventDefault();
+                console.log(e.target.body.value);
                 checkAuth = localStorage.getItem("token");
 
                 if (!(checkAuth == null)) {
-                  _context2.next = 6;
+                  _context2.next = 7;
                   break;
                 }
 
                 _this2.$router.push('/admin');
 
-                _context2.next = 21;
+                _context2.next = 23;
                 break;
 
-              case 6:
+              case 7:
                 postId = e.target.elements.postParent.value;
                 commentId = e.target.elements.commentID.value;
                 console.log(commentId);
@@ -287,16 +290,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 };
                 formData = new FormData();
-                formData.append("body", _this2.parentComment);
+                formData.append("body", e.target.body.value);
                 formData.append("user_id", _this2.userID);
                 formData.append("post_id", postId);
                 formData.append("parent_id", commentId);
-                _context2.next = 17;
+                _context2.next = 18;
                 return axios.post("/comments", formData, config);
 
-              case 17:
+              case 18:
                 response = _context2.sent;
                 console.log(response.data);
+                $(".parentInput").val("");
 
                 _this2.posts.forEach(function (element) {
                   if (element.id == postId) {
@@ -310,7 +314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.parentComment = "";
 
-              case 21:
+              case 23:
               case "end":
                 return _context2.stop();
             }
@@ -337,7 +341,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.$router.push('/admin');
 
-                _context3.next = 21;
+                _context3.next = 22;
                 break;
 
               case 6:
@@ -350,7 +354,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 };
                 formData = new FormData();
-                formData.append("body", _this3.childComment);
+                formData.append("body", e.target.body.value);
                 formData.append("user_id", _this3.userID);
                 formData.append("post_id", postId);
                 formData.append("parent_id", commentId);
@@ -360,6 +364,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 17:
                 response = _context3.sent;
                 console.log(response.data);
+                $(".childInput").val("");
 
                 _this3.posts.forEach(function (element) {
                   if (element.id == postId) {
@@ -373,7 +378,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.childComment = "";
 
-              case 21:
+              case 22:
               case "end":
                 return _context3.stop();
             }
@@ -1414,29 +1419,7 @@ var render = function() {
                           "form",
                           { on: { submit: _vm.formSubmitParentComment } },
                           [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.parentComment,
-                                    expression: "parentComment"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { type: "text", name: "body" },
-                                domProps: { value: _vm.parentComment },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.parentComment = $event.target.value
-                                  }
-                                }
-                              })
-                            ]),
+                            _vm._m(0, true),
                             _vm._v(" "),
                             _c("input", {
                               attrs: { type: "hidden", name: "postParent" },
@@ -1448,7 +1431,7 @@ var render = function() {
                               domProps: { value: comment.id }
                             }),
                             _vm._v(" "),
-                            _vm._m(0, true),
+                            _vm._m(1, true),
                             _vm._v(" "),
                             _c("hr")
                           ]
@@ -1515,29 +1498,7 @@ var render = function() {
                                 "form",
                                 { on: { submit: _vm.formSubmitChildComment } },
                                 [
-                                  _c("div", { staticClass: "form-group" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.childComment,
-                                          expression: "childComment"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: { type: "text", name: "body" },
-                                      domProps: { value: _vm.childComment },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.childComment = $event.target.value
-                                        }
-                                      }
-                                    })
-                                  ]),
+                                  _vm._m(2, true),
                                   _vm._v(" "),
                                   _c("input", {
                                     attrs: {
@@ -1555,7 +1516,7 @@ var render = function() {
                                     domProps: { value: reply.id }
                                   }),
                                   _vm._v(" "),
-                                  _vm._m(1, true),
+                                  _vm._m(3, true),
                                   _vm._v(" "),
                                   _c("hr")
                                 ]
@@ -1571,35 +1532,14 @@ var render = function() {
                   _c("h4", [_vm._v("Add comment")]),
                   _vm._v(" "),
                   _c("form", { on: { submit: _vm.formSubmitComment } }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.addComment,
-                            expression: "addComment"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        domProps: { value: _vm.addComment },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.addComment = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
+                    _vm._m(4, true),
                     _vm._v(" "),
                     _c("input", {
                       attrs: { type: "hidden", name: "post" },
                       domProps: { value: post.id }
                     }),
                     _vm._v(" "),
-                    _vm._m(2, true)
+                    _vm._m(5, true)
                   ])
                 ],
                 2
@@ -1619,8 +1559,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("input", {
-        staticClass: "btn btn-success",
-        attrs: { type: "submit", value: "Reply" }
+        staticClass: "form-control parentInput",
+        attrs: { type: "text", value: "", name: "body" }
       })
     ])
   },
@@ -1632,6 +1572,39 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "btn btn-success",
         attrs: { type: "submit", value: "Reply" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control childInput",
+        attrs: { type: "text", value: "", name: "body" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "btn btn-success",
+        attrs: { type: "submit", value: "Reply" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("textarea", {
+        staticClass: "form-control addInput",
+        attrs: { name: "body", value: "" }
       })
     ])
   },

@@ -59,9 +59,9 @@
                   <div class="form-group">
                     <input
                       type="text"
-                      v-model="parentComment"
+                      value=''
                       name="body"
-                      class="form-control"
+                      class="form-control parentInput"
                     />
                   </div>
                   <input type="hidden" name="postParent" :value="post.id" />
@@ -98,7 +98,7 @@
                   </div>
                   <form @submit="formSubmitChildComment">
                     <div class="form-group">
-                      <input type="text" v-model="childComment" name="body" class="form-control" />
+                      <input type="text"  value='' name="body" class="form-control childInput" />
                     </div>
                  <input type="hidden" name="postChild" :value="post.id" />
                   <input type="hidden" name="commentChildID" :value="reply.id" />
@@ -118,8 +118,9 @@
               <form @submit="formSubmitComment">
                 <div class="form-group">
                   <textarea
-                    class="form-control"
-                    v-model="addComment"
+                    class="form-control addInput"
+                    name="body"
+                    value=""
                   ></textarea>
                 </div>
                 <input type="hidden" name="post" :value="post.id" />
@@ -173,13 +174,13 @@ let checkAuth =  localStorage.getItem("token");
       };
 
       let formData = new FormData();
-      formData.append("body", this.addComment);
+      formData.append("body", e.target.body.value);
       formData.append("user_id", this.userID);
       formData.append("post_id", postId);
 
       const response = await axios.post("/comments", formData, config);
       console.log(response.data);
-
+      $(".addInput").val("");
       this.posts.forEach((element) => {
         if (element.id == postId) {
           element.comments.push(response.data);
@@ -191,7 +192,7 @@ let checkAuth =  localStorage.getItem("token");
     async formSubmitParentComment(e) {
         
       e.preventDefault();
-
+      console.log(e.target.body.value);
 let checkAuth =  localStorage.getItem("token");
      
      if(checkAuth==null){
@@ -207,7 +208,7 @@ let checkAuth =  localStorage.getItem("token");
       };
 
       let formData = new FormData();
-      formData.append("body", this.parentComment);
+      formData.append("body", e.target.body.value);
       formData.append("user_id", this.userID);
       formData.append("post_id", postId);
       formData.append("parent_id", commentId);
@@ -215,7 +216,7 @@ let checkAuth =  localStorage.getItem("token");
 
       const response = await axios.post("/comments", formData, config);
       console.log(response.data);
-
+       $(".parentInput").val("");
       this.posts.forEach((element) => {
         if (element.id == postId) {
             
@@ -248,7 +249,7 @@ let checkAuth =  localStorage.getItem("token");
       };
 
       let formData = new FormData();
-      formData.append("body", this.childComment);
+      formData.append("body", e.target.body.value);
       formData.append("user_id", this.userID);
       formData.append("post_id", postId);
       formData.append("parent_id", commentId);
@@ -256,7 +257,7 @@ let checkAuth =  localStorage.getItem("token");
 
       const response = await axios.post("/comments", formData, config);
       console.log(response.data);
-
+$(".childInput").val("");
       this.posts.forEach((element) => {
         if (element.id == postId) {
             
