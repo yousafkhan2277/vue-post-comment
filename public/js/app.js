@@ -2063,6 +2063,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Sidebar",
   methods: {
@@ -2480,6 +2488,26 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
       return __webpack_require__.e(/*! import() */ "resources_js_views_admin_post_eidtPost_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/post/eidtPost.vue */ "./resources/js/views/admin/post/eidtPost.vue"));
     },
     props: true,
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/admin/pages/tags",
+    name: "tags",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_tag_tags_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/tag/tags.vue */ "./resources/js/views/admin/tag/tags.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/admin/pages/tag/create",
+    name: "createTags",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_tag_createTag_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/tag/createTag.vue */ "./resources/js/views/admin/tag/createTag.vue"));
+    },
     meta: {
       requiresAuth: true,
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
@@ -39384,6 +39412,23 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "nav-item active " },
+        [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/admin/pages/tags" } },
+            [
+              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _vm._v(" "),
+              _c("span", [_vm._v("Tag")])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("hr", { staticClass: "sidebar-divider" }),
       _vm._v(" "),
       _c("li", { staticClass: "nav-item active" }, [
@@ -56314,7 +56359,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_post_posts_vue":1,"resources_js_views_admin_post_createPost_vue":1,"resources_js_views_admin_post_postShow_vue":1,"resources_js_views_admin_post_eidtPost_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_post_posts_vue":1,"resources_js_views_admin_post_createPost_vue":1,"resources_js_views_admin_post_postShow_vue":1,"resources_js_views_admin_post_eidtPost_vue":1,"resources_js_views_admin_tag_tags_vue":1,"resources_js_views_admin_tag_createTag_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

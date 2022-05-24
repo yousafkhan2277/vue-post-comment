@@ -11,19 +11,15 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['media','comments','comments.replies','comments.user','comments.replies.user','user'])->latest()->get();
+        $posts = Post::with(['media','comments','comments.replies','comments.user','comments.replies.user','user','tags'])->latest()->get();
         return response()->json($posts); 
-        return view('post.index',compact('posts'));
     }
     /**
      * Write Your Code..
      *
      * @return string
     */
-    public function create()
-    {
-        return view('post.create');
-    }
+
     /**
      * Write Your Code..
      *
@@ -31,6 +27,15 @@ class PostController extends Controller
     */
     public function store(Request $request)
     {
+        $tagsId = $request->input('tag');
+        
+        // dd($tagsId[0]);
+        
+        // foreach ($tagsId as $tagId)
+        // { 
+        //     dd($tagId);
+
+        // }
 
         $input = $request->all();
         $request->validate([
@@ -38,6 +43,9 @@ class PostController extends Controller
             'body' => 'required',
         ]);
         $post =  Post::create($input);
+        
+        $post->tags()->attach($tagsId);
+
         if($request->hasFile('file') && $request->file('file')->isValid()){
             $post->addMediaFromRequest('file')->toMediaCollection('images');
         }
@@ -52,7 +60,7 @@ class PostController extends Controller
     */
     public function show($id)
     {
-        $post = Post::with(['comments','comments.replies','comments.user','comments.replies.user'])->find($id);
+        $post = Post::with(['comments','comments.replies','comments.user','comments.replies.user','tags'])->find($id);
         return response()->json($post);
     }
 

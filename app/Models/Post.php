@@ -39,5 +39,9 @@ class Post extends Model implements HasMedia
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->select(['id', 'name']);
+    }
 
 }

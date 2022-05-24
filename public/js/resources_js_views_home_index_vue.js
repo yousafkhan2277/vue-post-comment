@@ -187,6 +187,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ListPost",
   props: ["posts", "message", "userID"],
@@ -1355,6 +1366,35 @@ var render = function() {
                       "\n              " + _vm._s(post.body) + "\n            "
                     )
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex" },
+                    _vm._l(post.tags, function(tag) {
+                      return _c(
+                        "div",
+                        { key: tag.id, staticClass: "container " },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "badge badge-info text-white",
+                              staticStyle: { "text-decoration": "none" },
+                              attrs: { href: "#" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                          " +
+                                  _vm._s(tag.name) +
+                                  "\n                      "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),

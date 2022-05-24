@@ -97,15 +97,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                console.log("hbjbhbh");
+                _context.next = 3;
                 return axios.get("getAuthpost/" + _this.user.id).then(function (res) {
                   res.data.forEach(function (key, index) {
                     key['line'] = index + 1;
                   });
                   _this.Posts = res.data;
+                  console.log(_this.Posts);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }

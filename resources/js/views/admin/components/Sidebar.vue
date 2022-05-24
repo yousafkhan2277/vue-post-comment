@@ -40,6 +40,14 @@
         >
       </li>
 
+             <!-- Nav Item - Dashboard -->
+      <li class="nav-item active ">
+        <router-link class="nav-link" to="/admin/pages/tags">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Tag</span></router-link
+        >
+      </li>
+
 
 
             <!-- Divider -->

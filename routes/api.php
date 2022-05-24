@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::get('posts/{post}', [PostController::class, 'show']);
 Route::get('getAuthpost/{id}', [PostController::class, 'authPost']);
 Route::post('posts/delete/{id}', [PostController::class, 'delete']);
 Route::post('posts/update/{id}', [PostController::class, 'update']);
+Route::get('getTag', [TagController::class, 'index']);
+Route::post('tag/store', [TagController::class, 'store']);
 
 
 

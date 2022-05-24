@@ -33,6 +33,17 @@
               <p>
                 {{ post.body }}
               </p>
+              <div class="d-flex">
+              <div class="container "
+                 v-for="tag in post.tags"
+                :key="tag.id"
+                >
+              <a class="badge badge-info text-white" style="text-decoration: none;"
+                            href="#">
+                            {{ tag.name }}
+                        </a>
+            </div>
+            </div>
               <hr />
               <h4 class="text-info">Display Comments</h4>
 

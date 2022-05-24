@@ -33,6 +33,14 @@
                     required
                   ></textarea>
                 </div>
+                  <div class="form-group">
+                  <label class="label">Add Tag: </label>
+<multiselect v-model="value" :options="options" :multiple="true"
+ label="name"
+    track-by="name"
+></multiselect>
+                </div>
+                
 
                 <div class="form-group">
                   <label>Video:</label>
@@ -59,11 +67,12 @@
 <script>
 import { mapGetters } from "vuex";
 import Vue from 'vue';
+import Multiselect from 'vue-multiselect'
 
 
 export default {
   name: "createPosts",
-  
+   components: { Multiselect },
   computed: {
     ...mapGetters(["user"]),
   },
@@ -72,15 +81,36 @@ export default {
       title: "",
       body: "",
       file: "",
+      value: null,
+      options: []
     };
   },
+  mounted(){
+this.loadTags();
+},
   methods: {
+
+      async loadTags() {
+    console.log("hbjbhbh")
+    await axios.get("getTag/").then(res=>{
+
+         console.log(res.data);
+         this.options=res.data;
+     });
+  },
     onFileChange(e) {
       console.log(e.target.files[0]);
       this.file = e.target.files[0];
     },
     async formSubmit(e) {
       e.preventDefault();
+console.log(this.value);
+
+let tag=[];
+     this.value.forEach((key) => {
+             tag.push(key.id);
+            });
+            console.log(tag);
 
       const config = {
         headers: { "content-type": "multipart/form-data" },
@@ -89,6 +119,12 @@ export default {
       formData.append("file", this.file);
       formData.append("title", this.title);
       formData.append("body", this.body);
+           this.value.forEach((key) => {
+            formData.append("tag[]", key.id);
+            });
+            console.log(...formData);
+      
+      
 
      const response = await axios.post("/posts/store", formData, config);
      if(response.data){
@@ -103,3 +139,4 @@ export default {
   },
 };
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

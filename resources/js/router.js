@@ -91,6 +91,24 @@ let router = new Router({
                 layout: AdminLayout
             }
         },
+        {
+            path: "/admin/pages/tags",
+            name: "tags",
+            component: () => import("./views/admin/tag/tags.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/admin/pages/tag/create",
+            name: "createTags",
+            component: () => import("./views/admin/tag/createTag.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
         
     ]
 });

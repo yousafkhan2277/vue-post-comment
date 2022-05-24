@@ -65,11 +65,13 @@ this.loadPosts();
 },
   methods:{
   async loadPosts() {
+    console.log("hbjbhbh")
     await axios.get("getAuthpost/"+this.user.id).then(res=>{
      res.data.forEach((key, index) => {
               key['line'] = index + 1;
             });
          this.Posts=res.data;
+         console.log(this.Posts);
      });
   },
   async deletePost(id,index){
